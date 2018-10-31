@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h1> Add a Route </h1>
+<form method="POST" action="{{url_for('climberRoutes')}}"> 
+    {{ form.csrf_token }} 
+    <div class="row">
+        <div class="col">{{ form.routeName(class_="form-control input-btn", placeholder="Name")}}</div>
+        <div class="col">{{ form.location(class_="form-control input-btn", placeholder="Location")}}</div>
+        <div class="col">{{ form.routeType(rows = 9, multiple=True, class_="selectpicker", title="Select Type", single="True", placeholder="Type")}}</div>
+        <div class="col">{{ form.holds(rows = 9, multiple=True, class_="selectpicker", title="Select Holds", placeholder="Holds")}}</div>
+        <div class="col">{{ form.actualDifficulty(class_="form-control input-btn", placeholder="Actual Rating")}}</div>
+        <div class="col">{{ form.feltDifficulty(class_="form-control input-btn", placeholder="Felt Rating")}}</div>
+        <input type="submit" class="form-control input-btn col" value="Save">
+    </div>
+</form>
+
+<br>
+
+<h1> Your Routes </h1>
+<table class="table">
+    <thead>
+        <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Location</th>
+        <th scope="col">Holds</th>
+        <th scope="col">Actual Difficulty</th>
+        <th scope="col">Felt Difficulty</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for route in current_user.getRoutes() %}
+        <tr>
+        <th scope="row">{{route.getName()}}</th>
+        <td>{{route.getLocation()}}</td>
+        <td>
+            {% for hold in route.getHolds() %}
+            {{ hold }}
+            {% endfor %}
+        </td>
+        <td>{{route.getActualDifficulty()}}</td>
+        <td>{{route.getFeltDifficulty()}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

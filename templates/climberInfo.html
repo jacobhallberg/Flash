@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h1>{{ current_user.getUsername() }}'s Information</h1>
+
+<form method="POST" action="{{url_for('climberInfo')}}">
+    {{ form.csrf_token }} 
+    <div class="row">
+        <label class="col" for="Firstname">Firstname</label>
+        <label class="col" for="Lastname">Lastname</label>
+    </div>
+    <div class="row">
+            {{ form.firstname(class_="form-control form-control-lg col", placeholder=current_user.getInfo().getFirstname())}}
+            {{ form.lastname(class_="form-control form-control-lg col", placeholder=current_user.getInfo().getLastname())}}
+    </div>
+    <div class="row">
+            <label class="col" for="Address">Address</label>
+            <label class="col" for="PhoneNumber">Phone Number</label>
+            <label class="col" for="FavoriteGym">Favorite Gym</label>
+    </div>
+    <div class="row">
+        {{ form.address(class_="form-control form-control-lg col", placeholder=current_user.getInfo().getContactInfo().getAddress())}}
+        {{ form.phoneNumber(class_="form-control form-control-lg col", placeholder= current_user.getInfo().getContactInfo().getPhoneNumber())}}
+        {{ form.favoriteGym(class_="form-control form-control-lg col", placeholder= current_user.getFavoriteGym())}}
+    </div>
+    <input type="submit" class="form-control input-btn" value="Save">
+</form>
+{% endblock %}

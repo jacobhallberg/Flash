@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h1> Signup </h1>
+
+<form method="POST" action="{{url_for('signup')}}">
+    {{ form.csrf_token }} 
+    <div class="form-group">{{ form.username(class_="form-control form-control-lg", placeholder="Username")}}</div>
+    <div class="form-group">{{ form.password(class_="form-control form-control-lg", placeholder="Password")}}</div>
+    <input type="submit" class="form-control input-btn" value="Sign Up">
+</form>
+<div>
+    <a href="/login">Login Instead.</a> 
+</div>
+
+{% endblock %}

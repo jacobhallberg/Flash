@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible">
+    <title>
+        Flash - A Climber's Best Friend
+    </title>    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% include 'includes/_navbar.html' %}
+</head>
+
+<body class="layout-more">
+    <div class="container">
+        {% block content %}
+        {% include 'includes/_messages.html' %}
+        {% block body %}{% endblock %}
+        {% endblock %}
+    </div>
+</body>
