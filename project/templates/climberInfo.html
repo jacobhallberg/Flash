@@ -2,28 +2,60 @@
 
 {% block body %}
 
-<h1>{{ current_user.getUsername() }}'s Information</h1>
+<h4>{{ current_user.getUsername() }}</h4>
 
 <form method="POST" action="{{url_for('climberInfo')}}">
-    {{ form.csrf_token }} 
-    <div class="row">
-        <label class="col" for="Firstname">Firstname</label>
-        <label class="col" for="Lastname">Lastname</label>
+    {{ form.csrf_token }}
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label>First name</label>
+            {{ form.firstname(class_="form-control", placeholder=current_user.getInfo().getFirstname())}}
+        </div>
+        <div class="col-md-4 mb-3">
+            <label>Last name</label>
+            {{ form.lastname(class_="form-control", placeholder=current_user.getInfo().getLastname())}}
+        </div>
+        <div class="col-md-4 mb-3">
+            <label>Phone number</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupPrepend2">1 -</span>
+                </div>
+                {{ form.phoneNumber(class_="form-control",
+                placeholder=current_user.getInfo().getContactInfo().getPhoneNumber())}}
+            </div>
+        </div>
     </div>
-    <div class="row">
-            {{ form.firstname(class_="form-control form-control-lg col", placeholder=current_user.getInfo().getFirstname())}}
-            {{ form.lastname(class_="form-control form-control-lg col", placeholder=current_user.getInfo().getLastname())}}
+
+    <div class="form-row">
+        <div class="col-md-3 mb-3">
+            <label>Street</label>
+            {{ form.street(class_="form-control",
+            placeholder=current_user.getInfo().getContactInfo().getAddress().getStreet())}}
+        </div>
+        <div class="col-md-2 mb-3">
+            <label>City</label>
+            {{ form.city(class_="form-control",
+            placeholder=current_user.getInfo().getContactInfo().getAddress().getCity())}}
+        </div>
+        <div class="col-md-2 mb-3">
+            <label for="validationDefault04">State</label>
+            {{ form.state(class_="form-control",
+            placeholder=current_user.getInfo().getContactInfo().getAddress().getState())}}
+        </div>
+        <div class="col-md-2 mb-3">
+            <label>Zip</label>
+            {{ form.zipCode(class_="form-control",
+            placeholder=current_user.getInfo().getContactInfo().getAddress().getZipCode())}}
+        </div>
+        <div class="col-md-3 mb-3">
+            <label>Climbing Skill Level</label>
+            {{ form.climbingLevel(rows = 9, multiple=False, class_="selectpicker",
+            title=current_user.getInfo().getSkillLevel(), single="True")}}
+        </div>
     </div>
-    <div class="row">
-            <label class="col" for="Address">Address</label>
-            <label class="col" for="PhoneNumber">Phone Number</label>
-            <label class="col" for="FavoriteGym">Favorite Gym</label>
-    </div>
-    <div class="row">
-        {{ form.address(class_="form-control form-control-lg col", placeholder=current_user.getInfo().getContactInfo().getAddress())}}
-        {{ form.phoneNumber(class_="form-control form-control-lg col", placeholder= current_user.getInfo().getContactInfo().getPhoneNumber())}}
-        {{ form.favoriteGym(class_="form-control form-control-lg col", placeholder= current_user.getFavoriteGym())}}
-    </div>
-    <input type="submit" class="form-control input-btn" value="Save">
+
+    <input type="submit" class="form-control input-btn col-md-2 mb-3" value="Save">
 </form>
+
 {% endblock %}

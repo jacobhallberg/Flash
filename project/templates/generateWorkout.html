@@ -1,5 +1,66 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h1>Generate Workout</h1>
+<h4>Generate Workout</h4>
+
+
+<form method="POST" action="{{url_for('generateWorkout')}}">
+    {{ form.csrf_token }}
+    <div class="form-row">
+        <div class="col-md-3 mb-3">
+            <label>Enter Workout Name</label>
+            {{ form.name(class_="form-control", title="Workout Name") }}
+        </div>
+        <div class="col-md-2 mb-3">
+            <label>Select Gym</label>
+            {{ form.gym(rows = 9, multiple=False, class_="form-control selectpicker", single="True",
+            title="Gym") }}
+        </div>
+        <div class="col-md-2 mb-3">
+            <label>Select Route Types</label>
+            {{ form.types(rows = 9, multiple=True, class_="form-control selectpicker",
+            title="Route Types") }}
+        </div>
+        <div class="col-md-2 mb-3">
+            <label>Select Hold Types</label>
+            {{ form.holds(rows = 9, multiple=True, class_="form-control selectpicker",
+            title="Hold Types") }}
+        </div>
+        <div class="col-md-3 mb-3">
+            <label>Number of Routes</label>
+            {{ form.numRoutes(class_="form-control", title="# Wanted") }}
+        </div>
+    </div>
+
+    <input type="submit" class="form-control input-btn col-md-2 mb-3" value="Generate Workout">
+</form>
+
+
+{% if workout is defined %}
+<h4> {{ workout.getName() }} </h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Type</th>
+            <th scope="col">Holds</th>
+            <th scope="col">Actual Difficulty</th>
+            <th scope="col">Felt Difficulty</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for route in workout.getRoutes() %}
+        <tr>
+            <th scope="row">{{route.getName()}}</th>
+            <td>{{route.getLocation()}}</td>
+            <td>{{route.__class__.__name__}}</td>
+            <td> {% for hold in route.getHolds() %}{{ hold }} {% endfor %}</td>
+            <td>{{route.getActualDifficulty()}}</td>
+            <td>{{route.getFeltDifficulty()}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
 {% endblock %}

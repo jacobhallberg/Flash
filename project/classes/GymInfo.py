@@ -1,6 +1,4 @@
-#!/usr/bin/python
-# -*- coding: UTF-8 -*-
-from ContactInfo import ContactInfo
+from classes.ContactInfo import ContactInfo
 
 class GymInfo(ContactInfo):
 	def getHoursOfOperation(self):

@@ -8,11 +8,6 @@ class BoulderingTypes(Enum):
     topRope = "TopRope"
 
 class AbstractRouteFactory(ABC):
-    """
-    Declare an interface for operations that create abstract product
-    objects.
-    """
-
     @abstractmethod
     def createBoulderingRoute(self):
         pass
@@ -37,7 +32,6 @@ class RouteFactory(AbstractRouteFactory):
 
     @staticmethod
     def createRoute(self, routeType, name, location, holds, actualDifficulty, feltDifficulty):
-        print(routeType)
         if routeType == BoulderingTypes.bouldering.value:
             return self.createBoulderingRoute(name, location, holds, actualDifficulty, feltDifficulty)
         elif routeType == BoulderingTypes.lead.value:
