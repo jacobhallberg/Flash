@@ -1,4 +1,6 @@
-
+project/__pycache__
+project/db
+project/static
 .vscode/settings.json
 classes/__pycache__/Climber.cpython-36.pyc
 classes/__pycache__/ClimberInfo.cpython-36.pyc
