@@ -36,12 +36,10 @@ class Gyms(Enum):
     locationsList = list(set([location["location"] for location in locationsDictionary]))
     locations = [(location, location) for location in locationsList]
 
-
 class SkillLevel(Enum):
     beginner = "Beginner"
     intermediate = "Intermediate"
     advanced = "Advanced"
-
 
 class WorkoutForm(FlaskForm):
     name = StringField('Name', [validators.Length(min=3, max=25), validators.DataRequired()])
@@ -49,7 +47,6 @@ class WorkoutForm(FlaskForm):
     types = SelectMultipleField('Types', [validators.DataRequired()], choices=RouteTypes.routeTypes.value)
     holds = SelectMultipleField('Holds', [validators.DataRequired()], choices=HoldTypes.holdsTypes.value)
     numRoutes = IntegerField("NumberOfRoutes", [validators.DataRequired()])
-
 
 @login_manager.user_loader
 def load_climber(username):

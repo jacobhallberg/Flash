@@ -7,7 +7,7 @@ class HoldTypes(Enum):
     holdsTypes = [(hold, hold) for hold in holdTypesList]
 
 class RouteTypes(Enum):
-    routeTypesList = ["Boulder", "Lead", "TopRope"]
+    routeTypesList = ["Bouldering", "Lead", "TopRope"]
     routeTypes = [(routeType, routeType) for routeType in routeTypesList]
 
 class ClimbingLevels(Enum):
