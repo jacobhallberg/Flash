@@ -70,14 +70,12 @@ def load_climber(username):
         climber_info_object = ClimberInfo(
             firstname, lastname, address, phone_number, skill_level)
 
-        ############################################################################
         routes = mongo.db.Routes.find({"username": username})
         created_routes = []
         for route in routes:
             created_route = RouteFactory.createRoute(RouteFactory(), route["routeType"], route["routeName"], route["location"],
                                                      route["holds"], route["actualDifficulty"], route["feltDifficulty"])
             created_routes.append(created_route)
-        ############################################################################
 
         climbers = mongo.db.Climbers.find_one({"username": username})
         username = username
@@ -139,12 +137,14 @@ class SignupController(View):
         existing_user = mongo.db.Climbers.find_one({"username": username})
 
         if existing_user is None:
-            mongo.db.Climbers.insert(
-                {'username': username, 'password': password})
-            info_attributes = ['firstname', 'lastname', "street", "city",
-                               "state", "zipCode", 'phoneNumber', 'favoriteGym', 'climbingLevel']
+            mongo.db.Climbers.insert({'username': username, 'password': password})
 
-            climber_info_dict = {'username': username}
+            info_attributes = ['firstname', 'lastname', "street", "city",
+                               "state", "zipCode", 'phoneNumber', 'favoriteGym']
+
+            # Every climber starts with a beginner skill value until they change it manually.
+            climber_info_dict = {'username': username, "climbingLevel":SkillLevel.beginner.value}
+            # Creates empty fields for a climber. They must update these fields manually in the app.
             for attribte in info_attributes:
                 climber_info_dict[attribte] = ""
 
