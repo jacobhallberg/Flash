@@ -2,18 +2,18 @@
 
 {% block body %}
 
-<h4>{{ current_user.getUsername() }}</h4>
+<h4>{{ current_user.get_username() }}</h4>
 
 <form method="POST" action="{{url_for('climberInfo')}}">
     {{ form.csrf_token }}
     <div class="form-row">
         <div class="col-md-4 mb-3">
             <label>First name</label>
-            {{ form.firstname(class_="form-control", placeholder=current_user.getInfo().getFirstname())}}
+            {{ form.firstname(class_="form-control", placeholder=current_user.get_info().get_firstname())}}
         </div>
         <div class="col-md-4 mb-3">
             <label>Last name</label>
-            {{ form.lastname(class_="form-control", placeholder=current_user.getInfo().getLastname())}}
+            {{ form.lastname(class_="form-control", placeholder=current_user.get_info().get_lastname())}}
         </div>
         <div class="col-md-4 mb-3">
             <label>Phone number</label>
@@ -21,8 +21,8 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroupPrepend2">1 -</span>
                 </div>
-                {{ form.phoneNumber(class_="form-control",
-                placeholder=current_user.getInfo().getContactInfo().getPhoneNumber())}}
+                {{ form.phone_number(class_="form-control",
+                placeholder=current_user.get_info().get_contact_info().get_phone_number())}}
             </div>
         </div>
     </div>
@@ -31,27 +31,27 @@
         <div class="col-md-3 mb-3">
             <label>Street</label>
             {{ form.street(class_="form-control",
-            placeholder=current_user.getInfo().getContactInfo().getAddress().getStreet())}}
+            placeholder=current_user.get_info().get_contact_info().get_address().get_street())}}
         </div>
         <div class="col-md-2 mb-3">
             <label>City</label>
             {{ form.city(class_="form-control",
-            placeholder=current_user.getInfo().getContactInfo().getAddress().getCity())}}
+            placeholder=current_user.get_info().get_contact_info().get_address().get_city())}}
         </div>
         <div class="col-md-2 mb-3">
             <label for="validationDefault04">State</label>
             {{ form.state(class_="form-control",
-            placeholder=current_user.getInfo().getContactInfo().getAddress().getState())}}
+            placeholder=current_user.get_info().get_contact_info().get_address().get_state())}}
         </div>
         <div class="col-md-2 mb-3">
             <label>Zip</label>
-            {{ form.zipCode(class_="form-control",
-            placeholder=current_user.getInfo().getContactInfo().getAddress().getZipCode())}}
+            {{ form.zip_code(class_="form-control",
+            placeholder=current_user.get_info().get_contact_info().get_address().get_zip_code())}}
         </div>
         <div class="col-md-3 mb-3">
             <label>Climbing Skill Level</label>
             {{ form.climbingLevel(rows = 9, multiple=False, class_="selectpicker",
-            title=current_user.getInfo().getSkillLevel(), single="True")}}
+            title=current_user.get_info().get_skill_level(), single="True")}}
         </div>
     </div>
 

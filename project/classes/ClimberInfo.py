@@ -1,22 +1,26 @@
 from classes.ContactInfo import ContactInfo
 
-class ClimberInfo(ContactInfo):
-	def getFirstname(self):
+class ClimberInfo():
+	""" Stores personal information about a user.
+    Parameters
+    ----------
+	firstname (str): The user's firstname.
+	lastname (str): The user's lastname.
+	address (Address): Address object holding user's address information.
+	phone_number (str): The user's phone number.
+	skill_level (str): The user's climbing skill level chosen from 
+						the SkillLevels enum.
+    """
+	def get_firstname(self):
 		return self.___firstname
 
-	def setFirstname(self, aFirstname):
-		self.___firstname = aFirstname
-
-	def getLastname(self):
+	def get_lastname(self):
 		return self.___lastname
 
-	def getSkillLevel(self):
+	def get_skill_level(self):
 		return self.___skill_level
 
-	def setLastname(self, aLastname):
-		self.___lastname = aLastname
-	
-	def getContactInfo(self):
+	def get_contact_info(self):
 		return self.___contact_info
 
 	def __init__(self, firstname, lastname, address, phone_number, skill_level):

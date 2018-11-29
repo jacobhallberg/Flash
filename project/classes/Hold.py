@@ -1,24 +1,55 @@
-class Hold(object):
-	def getHoldType(self):
-		"""@ReturnType String"""
-		return self.___holdType
+from abc import ABC, abstractclassmethod
 
-	def setHoldType(self, aHoldType):
-		"""@ParamType aHoldType String
-		@ReturnType void"""
-		self.___holdType = aHoldType
+class Hold(ABC):
+	""" Abstract class used in the decorator design pattern. Forces children to
+		take in hold_type as a parameter.
+    Parameters
+    ----------
+	hold_type (str): String denoting the type of holds selected from the HoltTypes enum.
+    """
+	def __init__(self, hold_type):
+		self.hold_type = hold_type
 
-	def getHoldDifficulty(self):
-		"""@ReturnType Integer"""
-		return self.___holdDifficulty
+	@abstractclassmethod
+	def return_holds(self):
+		pass
 
-	def setHoldDifficulty(self, aHoldDifficulty):
-		"""@ParamType aHoldDifficulty Integer
-		@ReturnType void"""
-		self.___holdDifficulty = aHoldDifficulty
+class BaseHold(Hold):
+	""" Concrete class used in the decorator design pattern. Implements return holds
+		and doesn't recursively class decorators because its of BaseHold type.
+    Parameters
+    ----------
+	None
+    """
+	def return_holds(self):
+		return [self.hold_type]
 
-	def __init__(self, holdType, holdDifficulty):
-		self.___holdType = holdType
-		"""@AttributeType String"""
-		self.___holdDifficulty = holdDifficulty
-		"""@AttributeType Integer"""
+class Decorator(Hold, ABC):
+	""" Abstract class used in the decorator design pattern. Forces children to
+		take in hold_types and component, as well as implement return holds.
+    Parameters
+    ----------
+	hold_type (str): String denoting the type of holds selected from the HoltTypes enum.
+	component (BaseHold | DecoratorHold): 
+    """
+	def __init__(self, hold_type, component):
+		self.hold_type = hold_type
+		self.component = component
+
+	@abstractclassmethod
+	def return_holds(self):
+		""" Returns list of hold types.
+		"""
+		pass
+ 
+class DecoratorHold(Decorator):
+	""" Concrete hold class used in the decorator design pattern. Builds up a list
+		recursively by calling return_holds on the component object.
+    Parameters
+    ----------
+	None
+    """
+	def return_holds(self):
+		""" Returns list of hold types.
+		"""
+		return self.component.return_holds() + [self.hold_type] 

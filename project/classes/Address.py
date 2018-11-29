@@ -1,31 +1,29 @@
 class Address(object):
-	def getStreet(self):
+	""" Stateful class that holds address attributes.
+	
+	Parameters
+	----------
+	street (str): Street of user's address.
+	city (str): City of user's address.
+	state (str): State of user's address.
+	zip_code (str): Zip Code of user's address.
+	"""
+
+	def get_street(self):
 		return self.___street
 
-	def setStreet(self, aStreet):
-		self.___street = aStreet
-
-	def getCity(self):
+	def get_city(self):
 		return self.___city
 
-	def setCity(self, aCity):
-		self.___city = aCity
-
-	def getState(self):
+	def get_state(self):
 		return self.___state
 
-	def setState(self, aState):
-		self.___state = aState
+	def get_zip_code(self):
+		return self.___zip_code
 
-	def getZipCode(self):
-		return self.___zipCode
-
-	def setZipCode(self, aZipCode):
-		self.___zipCode = aZipCode
-
-	def __init__(self, street, city, state, zipCode):
+	def __init__(self, street, city, state, zip_code):
 		self.___street = street
 		self.___city = city
 		self.___state = state
-		self.___zipCode = zipCode
+		self.___zip_code = zip_code
 

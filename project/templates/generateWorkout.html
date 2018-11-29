@@ -37,7 +37,7 @@
 
 
 {% if workout is defined %}
-<h4> {{ workout.getName() }} </h4>
+<h4> {{ workout.get_name() }} </h4>
 <table class="table">
     <thead>
         <tr>
@@ -50,14 +50,14 @@
         </tr>
     </thead>
     <tbody>
-        {% for route in workout.getRoutes() %}
+        {% for route in workout.get_routes() %}
         <tr>
-            <th scope="row">{{route.getName()}}</th>
-            <td>{{route.getLocation()}}</td>
+            <th scope="row">{{route.get_name()}}</th>
+            <td>{{route.get_location()}}</td>
             <td>{{route.__class__.__name__}}</td>
-            <td> {% for hold in route.getHolds() %}{{ hold }} {% endfor %}</td>
-            <td>{{route.getActualDifficulty()}}</td>
-            <td>{{route.getFeltDifficulty()}}</td>
+            <td> {% for hold in route.get_holds() %}{{ hold }} {% endfor %}</td>
+            <td>{{route.get_actual_difficulty()}}</td>
+            <td>{{route.get_felt_difficulty()}}</td>
         </tr>
         {% endfor %}
     </tbody>

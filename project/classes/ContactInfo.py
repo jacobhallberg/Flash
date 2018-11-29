@@ -1,19 +1,18 @@
-from abc import ABC
-
-class ContactInfo(ABC):
-	def getAddress(self):
+class ContactInfo:
+	""" Info class that takes in 
+		address and phone number as parameters.
+    Parameters
+    ----------
+	address (Address): Address object holding user's address information.
+	phone_number (str): The user's phone number.
+    """
+	def get_address(self):
 		return self.___address
 
-	def setAddress(self, aAddress):
-		self.___address = aAddress
+	def get_phone_number(self):
+		return self.___phone_number
 
-	def getPhoneNumber(self):
-		return self.___phoneNumber
-
-	def setPhoneNumber(self, aPhoneNumber):
-		self.___phoneNumber = aPhoneNumber
-
-	def __init__(self, address, phoneNumber):
+	def __init__(self, address, phone_number):
 		self.___address = address
-		self.___phoneNumber = phoneNumber
+		self.___phone_number = phone_number
 

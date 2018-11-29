@@ -87,3 +87,12 @@ project/static/bootstrap.min.css.map
 project/static/bootstrap.min.js
 project/static/bootstrap.min.js.map
 project/db/journal/WiredTigerLog.0000000003
+project/.DS_Store
+.vscode/.ropeproject/config.py
+.DS_Store
+project/classes/__pycache__/Workout.cpython-36.pyc
+project/classes/__pycache__/Hold.cpython-36.pyc
+project/classes/__pycache__/Address.cpython-36.pyc
+project/classes/__pycache__/Address.cpython-36.pyc
+project/classes/__pycache__/Workout.cpython-36.pyc
+*.pyc
